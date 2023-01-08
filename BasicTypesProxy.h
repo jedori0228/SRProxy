@@ -263,7 +263,7 @@ namespace caf
         fElems[i] = new Proxy<T>(fDir, GetTreeForName(), Subscript(i), fIdx, i);
       }
       else{
-        std::cout << "[EnsureLongEnough] Final, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; fElems[i] exists" << std::endl;
+        std::cout << "[EnsureLongEnough] Final, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; fElems[i] exists, base = " << fIdx << std::endl;
       }
     }
 
