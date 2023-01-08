@@ -106,6 +106,7 @@ namespace caf
       fBase(AdjustBase(base, fType, fName)), fOffset(offset),
       fLeafInfo(0), fBranch(0), fTTF(0), fEntry(-1), fSubIdx(0)
   {
+    std::cout << "[Proxy constructor] name = " << name << ", base = " << base << ", offset = " << offset << std::endl;
   }
 
   const long kDummyBase = -1;
@@ -567,6 +568,7 @@ namespace caf
     : ArrayVectorProxyBase(d, tr, name, isNestedContainer, base, offset),
       fSize(0)
   {
+    std::cout << "[VectorProxy constructor] name = " << name << ", base = " << base << ", offset = " << offset << std::endl;
   }
 
   //----------------------------------------------------------------------
