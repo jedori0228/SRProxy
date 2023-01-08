@@ -420,12 +420,16 @@ namespace caf
   //----------------------------------------------------------------------
   void ArrayVectorProxyBase::EnsureIdxP() const
   {
-    if(fIdxP) return;
+    if(fIdxP){
+      std::cout << "[EnsureIdxP] fIdxP exist" << std::endl;
+      return;
+    }
 
     // Only used for flat trees. For single-tree, only needed for objects not
     // at top-level.
     if(fType == kFlatMultiTree ||
        (fType == kFlatSingleTree && NSubscripts(fName) > 0)){
+      std::cout << "[EnsureIdxP] fBase = " << fBase << ", fOffset = " << fOffset << std::endl;
       fIdxP = new Proxy<long long>(fDir, fTree, IndexField(), fBase, fOffset);
     }
   }

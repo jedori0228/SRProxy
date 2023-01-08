@@ -243,19 +243,27 @@ namespace caf
     /// Implies CheckIndex()
     void EnsureLongEnough(size_t i) const
     {
+      std::cout << "[EnsureLongEnough] called" << std::endl;
+      std::cout << "[EnsureLongEnough] Running CheckIndex" << std::endl;
       CheckIndex(i, size());
-      if(i >= fElems.size()) fElems.resize(i+1);
-
+      if(i >= fElems.size()){
+        std::cout << "[EnsureLongEnough] resizing.." << std::endl;
+        fElems.resize(i+1);
+      }
+      std::cout << "[EnsureLongEnough] Running EnsureIdxP" << std::endl;
       EnsureIdxP();
-      if(fIdxP) fIdx = *fIdxP; // store into an actual value we can point to
+      if(fIdxP){
+        std::cout << "[EnsureLongEnough] Replacing fIdx to *fIdxP" << std::endl;
+        fIdx = *fIdxP; // store into an actual value we can point to
+      }
 
 
       if(!fElems[i]){
-        std::cout << "EnsureLongEnough called, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; base = " << fIdx << std::endl;
+        std::cout << "[EnsureLongEnough] Final, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; base = " << fIdx << std::endl;
         fElems[i] = new Proxy<T>(fDir, GetTreeForName(), Subscript(i), fIdx, i);
       }
       else{
-        std::cout << "EnsureLongEnough called, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; fElems[i] exists" << std::endl;
+        std::cout << "[EnsureLongEnough] Final, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; fElems[i] exists" << std::endl;
       }
     }
 
