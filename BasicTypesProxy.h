@@ -6,6 +6,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <iostream>
 
 class TDirectory;
 class TFormLeafInfo;
@@ -248,7 +249,14 @@ namespace caf
       EnsureIdxP();
       if(fIdxP) fIdx = *fIdxP; // store into an actual value we can point to
 
-      if(!fElems[i]) fElems[i] = new Proxy<T>(fDir, GetTreeForName(), Subscript(i), fIdx, i);
+
+      if(!fElems[i]){
+        std::cout << "EnsureLongEnough called, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; base = " << fIdx << std::endl;
+        fElems[i] = new Proxy<T>(fDir, GetTreeForName(), Subscript(i), fIdx, i);
+      }
+      else{
+        std::cout << "EnsureLongEnough called, name = " << Name() << ", i = " << i << ",  size() = " <<  size() << "; fElems[i] exists" << std::endl;
+      }
     }
 
     mutable std::vector<Proxy<T>*> fElems;

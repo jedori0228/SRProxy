@@ -215,6 +215,7 @@ namespace caf
 
     fBranch->GetEntry(fEntry);
 
+    std::cout << "[GetValueFlatSingle] fBase = " << fBase << ", fOffset = " << fOffset << std::endl;
     GetTypedValueWrapper(fLeaf, fVal, fBase+fOffset);
 
     return (T)fVal;
